@@ -1,0 +1,34 @@
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="layouts/defaultTemplate">
+<head>
+    <title th:text="${title}"></title>
+</head>
+<body>
+    <div layout:fragment="content">
+        <h1 th:text="${title}"></h1>
+        <a href="/saints/new" class="btn btn-primary mb-2">Add New Saint</a>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Name</th>
+					<th>Feast Day</th>
+                    <th>Patron Of</th>
+					<th>Biography</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="saint : ${saints}">
+                    <td th:text="${saint.name}"></td>
+					<td th:text="${saint.feastDay}"></td>
+                    <td th:text="${saint.patronOf}"></td>
+					<td th:text="${saint.biography}"></td>
+                    <td>
+                        <a th:href="@{/saints/edit/{id}(id=${saint.id})}" class="btn btn-warning">Edit</a>
+                        <a th:href="@{/saints/delete/{id}(id=${saint.id})}" class="btn btn-danger">Delete</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
